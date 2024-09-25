@@ -19,6 +19,7 @@ namespace CalifornianHealthMonolithic.Code
         {
             //Should the consultant detail and the calendar (available dates) be clubbed together?
             //Is this the reason the calendar is slow to load? Rethink how we can rewrite this?
+            //this gets every consultants available dates
 
             return dbContext.consultantCalendars.ToList();
         }

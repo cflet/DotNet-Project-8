@@ -1,16 +1,16 @@
 ﻿@model CalifornianHealthMonolithic.Models.ConsultantModelList
 
-@{
-    ViewBag.Title = "Home Page";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+@{ ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 <section>
-    <label for="consultant">Select Consultant you wish to make an appointment for</label>
+    <label id="testing" for="consultant">Select Consultant you wish to make an appointment for</label>
     <div class="form-group">
         @Html.DropDownListFor(m => m.selectedConsultantId, Model.ConsultantsList, "- Please select -", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.selectedConsultantId)
     </div>
+
+    <p id="result"></p>
 
 </section>
 <section>
@@ -42,7 +42,7 @@
                     <text x="577" y="24" style="fill: #ffffff; font-size:20px; font-family: Arial; font-weight:bold;">5</text>
                 </g>
                 <g>
-                    <a xlink:href="/Booking/ConfirmAppointment"><text x="50" y="63" style="fill: #ffffff; font-size:20px; font-family: Arial; font-weight:bold;">6</text></a>
+                    <a id="selectedDate" xlink:href="/Booking/ConfirmAppointment"><text x="50" y="63" style="fill: #ffffff; font-size:20px; font-family: Arial; font-weight:bold;">6</text></a>
                     <text x="141" y="63" style="fill: #ffffff; font-size:20px; font-family: Arial; font-weight:bold;">7</text>
                     <text x="229" y="63" style="fill: #ffffff; font-size:20px; font-family: Arial; font-weight:bold;">8</text>
                     <text x="315" y="63" style="fill: #ffffff; font-size:20px; font-family: Arial; font-weight:bold;">9</text>
@@ -104,4 +104,27 @@
             document.getElementById("month_name").innerHTML = n;
         }
     </script>
+
+
+    <script>
+        window.addEventListener("click", () => {
+            console.log("You knocked?");
+        });
+    </script>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#selectedDate").click(function () {
+                const selectedVal = $("#selectedConsultantId").val();
+                $('#result')
+                    .text(`The selected value is: ${selectedVal}`);
+            });
+        });
+    </script>
+
+
 </section>
+
+
+
